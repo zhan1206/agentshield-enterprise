@@ -1,11 +1,17 @@
-# Build stage
+# Build stage - Go backend
 FROM golang:1.21-alpine AS backend-builder
+RUN apk add --no-cache git gcc musl-dev
 WORKDIR /app/backend
+COPY backend/go.mod backend/go.sum ./
+RUN go mod download
 COPY backend/ .
-RUN go mod tidy && go build -o agentshield-server ./cmd/server
+RUN CGO_ENABLED=0 go build -o agentshield-server ./cmd/server
 
-FROM rust:1.74-alpine AS sandbox-builder
+# Build stage - Rust sandbox engine
+FROM rust:1.74-bookworm AS sandbox-builder
 WORKDIR /app/sandbox
+COPY sandbox/Cargo.toml sandbox/Cargo.lock ./
+RUN mkdir src && echo "" > src/lib.rs && cargo build --release 2>/dev/null || true
 COPY sandbox/ .
 RUN cargo build --release
 

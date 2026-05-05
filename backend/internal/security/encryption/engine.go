@@ -4,6 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
+	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
 	"io"
@@ -71,10 +72,6 @@ func (e *Engine) Decrypt(ciphertextHex string) (string, error) {
 
 // Hash returns SHA-256 hash of the input
 func (e *Engine) Hash(input string) string {
-	// Using a simple hash for watermarking (not encryption)
-	h := hex.EncodeToString([]byte(input))
-	if len(h) > 16 {
-		h = h[:16]
-	}
-	return h
+	hash := sha256.Sum256([]byte(input))
+	return hex.EncodeToString(hash[:])
 }

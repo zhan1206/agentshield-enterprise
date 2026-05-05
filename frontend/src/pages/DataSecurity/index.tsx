@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col, Card, Statistic, Tabs, Table, Input, Button, Tag, Switch } from 'antd';
-import { DatabaseOutlined, ScanOutlined, SafetyOutlined } from '@ant-design/icons';
-import { SearchOutlined } from '@ant-design/icons';
+import { DatabaseOutlined, ScanOutlined, SafetyOutlined, SearchOutlined } from '@ant-design/icons';
 
 const mockRules = [
   { key: '1', id: 'dr-001', name: '中国身份证号', category: '身份证', sensitivity: 'secret', enabled: true },

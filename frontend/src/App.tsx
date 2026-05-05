@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import './App.css';
 import { Layout, Menu } from 'antd';
 import {
   DashboardOutlined, CloudServerOutlined, RobotOutlined,

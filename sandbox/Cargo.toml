@@ -8,6 +8,7 @@ license = "Apache-2.0"
 [lib]
 name = "agentshield_sandbox"
 path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }

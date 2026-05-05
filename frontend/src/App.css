@@ -1,0 +1,17 @@
+.ant-layout-sider {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.ant-card {
+  transition: box-shadow 0.2s;
+}
+
+.ant-card:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}

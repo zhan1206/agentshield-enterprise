@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Tag, Modal, Form, Input, Select, message } from 'antd';
+import { Table, Button, Tag, Modal, Form, Input, Select, Space, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 const secColors: Record<string, string> = { trusted: 'green', standard: 'blue', restricted: 'orange', untrusted: 'red' };
@@ -40,8 +40,5 @@ const Agents: React.FC = () => {
     </div>
   );
 };
-
-// Need Space import
-import { Space } from 'antd';
 
 export default Agents;
