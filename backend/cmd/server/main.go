@@ -52,8 +52,8 @@ func main() {
 	agentRegistry := agent.NewRegistry()
 
 	// Initialize adapters
-	fwAdapter := framework.NewAdapter()
-	toolGateway := tool.NewGateway()
+	fwAdapter := framework.NewAdapter(framework.AdapterConfig{}, nil)
+	toolGateway := tool.NewGateway(nil, nil)
 	dataGuard := data.NewGuard(encEngine)
 
 	_ = permLifecycle

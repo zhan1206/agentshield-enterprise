@@ -7,19 +7,8 @@ import (
 
 // Lifecycle manages permission lifecycle: grant, expire, revoke
 type Lifecycle struct {
-	engine  *Engine
-	grants  map[string]*Grant
-}
-
-// Grant represents a time-limited permission grant
-type Grant struct {
-	ID          string    `json:"id"`
-	AgentID     string    `json:"agent_id"`
-	RuleIDs     []string  `json:"rule_ids"`
-	GrantedAt   time.Time `json:"granted_at"`
-	ExpiresAt   time.Time `json:"expires_at"`
-	Reason      string    `json:"reason"`
-	AutoRevoke  bool      `json:"auto_revoke"`
+	engine *Engine
+	grants map[string]*Grant
 }
 
 // NewLifecycle creates a new permission lifecycle manager
@@ -33,15 +22,13 @@ func NewLifecycle(engine *Engine) *Lifecycle {
 // GrantPermissions temporarily grants permissions to an agent
 func (l *Lifecycle) GrantPermissions(ctx context.Context, agentID string, ruleIDs []string, duration time.Duration, reason string) (*Grant, error) {
 	grant := &Grant{
-		ID:         "grant-" + agentID + "-" + time.Now().Format("20060102150405"),
+		GrantID:    "grant-" + agentID + "-" + time.Now().Format("20060102150405"),
 		AgentID:    agentID,
-		RuleIDs:    ruleIDs,
 		GrantedAt:  time.Now(),
 		ExpiresAt:  time.Now().Add(duration),
-		Reason:     reason,
 		AutoRevoke: true,
 	}
-	l.grants[grant.ID] = grant
+	l.grants[grant.GrantID] = grant
 	return grant, nil
 }
 
